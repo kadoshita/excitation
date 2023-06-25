@@ -1,3 +1,3 @@
-pub trait AddressGenerator{
+pub trait AddressGenerator {
     fn generate(&self) -> String;
 }
