@@ -9,3 +9,17 @@ impl AddressGenerator for TestNet2Generator {
         format!("198.51.100.{}", fourth_octet)
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_generate() {
+        let generator = TestNet2Generator {};
+        let address = generator.generate();
+        assert!(address.starts_with("198.51.100."));
+        let fourth_octet = address.split('.').nth(3).unwrap();
+        let _: u8 = fourth_octet.parse().unwrap();
+    }
+}
