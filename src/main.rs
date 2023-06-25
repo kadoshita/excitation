@@ -19,7 +19,7 @@ struct Args {
         default_value_t = 1,
         help = "Number of generate addresses"
     )]
-    number: u8,
+    number: u32,
 
     #[arg(short, long, default_value_t = 1, help = "Network block")]
     block: u8,
@@ -27,7 +27,6 @@ struct Args {
 
 fn main() {
     let args = Args::parse();
-    println!("{:?}", args);
 
     let generator: Box<dyn AddressGenerator> = match &args.block {
         1 => Box::new(TestNet1Generator {}),
@@ -39,5 +38,8 @@ fn main() {
         }
     };
 
-    generator.generate();
+    for _ in 0..args.number {
+        let address = generator.generate();
+        println!("{}", address);
+    }
 }

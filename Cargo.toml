@@ -10,3 +10,4 @@ description = "The CLI tool to generate IP addresses for documentation as define
 
 [dependencies]
 clap = { version = "4.2.7", features = ["derive"] }
+rand = "0.8.5"
